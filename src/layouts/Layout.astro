@@ -1,101 +1,165 @@
 ---
-import SEOHead from '../components/SEOHead.astro';
-import ThemeToggle from '../components/ThemeToggle.astro';
-import Footer from '../components/Footer.astro';
-import Analytics from '../components/Analytics.astro';
-import '../styles/global.css';
+import SEOHead from "../components/SEOHead.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import Footer from "../components/Footer.astro";
 
-const { title, description, image, publishDate, updatedDate, schema, category } = Astro.props;
+import "../styles/global.css";
+
+const {
+  title,
+  description,
+  image,
+  publishDate,
+  updatedDate,
+  schema,
+  category,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<Analytics measurementId="G-XXXXXXXXXX" />
-		<script is:inline>
-			const theme = localStorage.getItem('theme');
-			if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-				document.documentElement.classList.add('dark');
-			} else {
-				document.documentElement.classList.remove('dark');
-			}
-		</script>
-		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-		<SEOHead 
-			title={title} 
-			description={description} 
-			image={image} 
-			publishDate={publishDate} 
-			updatedDate={updatedDate} 
-			schema={schema} 
-			category={category} 
-		/>
-	</head>
-	<body>
-		<div id="reading-progress" class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-acc-primary to-acc-secondary z-[60] w-0 transition-all duration-150"></div>
-		
-		<header class="sticky top-0 z-50 border-b border-border-ui bg-bg-main/80 backdrop-blur-md">
-			<nav class="container mx-auto px-6 h-20 flex items-center justify-between">
-				<a href="/" class="text-2xl font-serif font-bold">
-					Cartera<span class="text-acc-primary">IA</span>
-				</a>
-				
-				<div class="flex items-center gap-4 md:gap-6">
-					<div class="hidden md:flex gap-8 text-sm font-medium">
-						<a href="/inversiones" class="hover:text-acc-primary transition-colors">Inversiones</a>
-						<a href="/ia" class="hover:text-acc-secondary transition-colors">IA Práctica</a>
-						<a href="/herramientas" class="hover:text-tx-main transition-colors">Herramientas</a>
-					</div>
-					<ThemeToggle />
-					<button class="hidden md:block bg-acc-primary text-white px-5 py-2 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">
-						Newsletter
-					</button>
-					<button id="mobile-menu-btn" class="md:hidden p-2 text-tx-main focus:outline-none" aria-label="Abrir menú">
-						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-						</svg>
-					</button>
-				</div>
-			</nav>
+  <head>
+    <meta charset="UTF-8" />
 
-			<div id="mobile-menu" class="hidden md:hidden bg-bg-card border-b border-border-ui px-6 py-6 absolute w-full left-0 top-20 shadow-xl">
-				<nav class="flex flex-col gap-6">
-					<a href="/inversiones" class="text-lg font-bold hover:text-acc-primary transition-colors">Inversiones</a>
-					<a href="/ia" class="text-lg font-bold hover:text-acc-secondary transition-colors">IA Práctica</a>
-					<a href="/herramientas" class="text-lg font-bold hover:text-tx-main transition-colors">Herramientas</a>
-					<button class="bg-acc-primary text-white px-5 py-3 rounded-xl font-bold text-center mt-2 w-full active:scale-95 transition-transform">
-						Suscribirse a la Newsletter
-					</button>
-				</nav>
-			</div>
-		</header>
-		
-		<main>
-			<slot />
-		</main>
+    <script is:inline>
+      const theme = localStorage.getItem("theme");
+      if (
+        theme === "dark" ||
+        (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <SEOHead
+      title={title}
+      description={description}
+      image={image}
+      publishDate={publishDate}
+      updatedDate={updatedDate}
+      schema={schema}
+      category={category}
+    />
+  </head>
+  <body>
+    <div
+      id="reading-progress"
+      class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-acc-primary to-acc-secondary z-[60] w-0 transition-all duration-150"
+    >
+    </div>
 
-		<Footer />
+    <header
+      class="sticky top-0 z-50 border-b border-border-ui bg-bg-main/80 backdrop-blur-md"
+    >
+      <nav
+        class="container mx-auto px-6 h-20 flex items-center justify-between"
+      >
+        <a href="/" class="text-2xl font-serif font-bold">
+          Cartera<span class="text-acc-primary">IA</span>
+        </a>
 
-		<script is:inline>
-			window.addEventListener('scroll', () => {
-				const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-				const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-				const scrolled = (winScroll / height) * 100;
-				const progressBar = document.getElementById('reading-progress');
-				if (progressBar) {
-					progressBar.style.width = scrolled + '%';
-				}
-			});
+        <div class="flex items-center gap-4 md:gap-6">
+          <div class="hidden md:flex gap-8 text-sm font-medium">
+            <a
+              href="/inversiones"
+              class="hover:text-acc-primary transition-colors">Inversiones</a
+            >
+            <a href="/ia" class="hover:text-acc-secondary transition-colors"
+              >IA Práctica</a
+            >
+            <a href="/herramientas" class="hover:text-tx-main transition-colors"
+              >Herramientas</a
+            >
+          </div>
+          <ThemeToggle />
+          <button
+            class="hidden md:block bg-acc-primary text-white px-5 py-2 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity"
+          >
+            Newsletter
+          </button>
+          <button
+            id="mobile-menu-btn"
+            class="md:hidden p-2 text-tx-main focus:outline-none"
+            aria-label="Abrir menú"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </nav>
 
-			const mobileBtn = document.getElementById('mobile-menu-btn');
-			const mobileMenu = document.getElementById('mobile-menu');
-			
-			if(mobileBtn && mobileMenu) {
-				mobileBtn.addEventListener('click', () => {
-					mobileMenu.classList.toggle('hidden');
-				});
-			}
-		</script>
-	</body>
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-bg-card border-b border-border-ui px-6 py-6 absolute w-full left-0 top-20 shadow-xl"
+      >
+        <nav class="flex flex-col gap-6">
+          <a
+            href="/inversiones"
+            class="text-lg font-bold hover:text-acc-primary transition-colors"
+            >Inversiones</a
+          >
+          <a
+            href="/ia"
+            class="text-lg font-bold hover:text-acc-secondary transition-colors"
+            >IA Práctica</a
+          >
+          <a
+            href="/herramientas"
+            class="text-lg font-bold hover:text-tx-main transition-colors"
+            >Herramientas</a
+          >
+          <button
+            class="bg-acc-primary text-white px-5 py-3 rounded-xl font-bold text-center mt-2 w-full active:scale-95 transition-transform"
+          >
+            Suscribirse a la Newsletter
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+
+    <script is:inline>
+      window.addEventListener("scroll", () => {
+        const winScroll =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        const height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        const progressBar = document.getElementById("reading-progress");
+        if (progressBar) {
+          progressBar.style.width = scrolled + "%";
+        }
+      });
+
+      const mobileBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+    </script>
+  </body>
 </html>
