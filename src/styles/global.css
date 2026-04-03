@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-serif: "Playfair Display", serif;
   --font-sans: "DM Sans", sans-serif;
@@ -12,6 +14,7 @@
   --color-acc-secondary: #6366f1;
   --color-tx-main: #0f172a;
   --color-tx-sec: #475569;
+  --color-tx-muted: #94a3b8;
 }
 
 .dark {
@@ -22,6 +25,7 @@
   --color-acc-secondary: #818cf8;
   --color-tx-main: #f8fafc;
   --color-tx-sec: #94a3b8;
+  --color-tx-muted: #64748b;
 }
 
 @layer base {

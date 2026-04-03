@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 
 export default defineConfig({
-  site: 'https://capitalia.com',
+  site: 'https://carteraia.com',
   integrations: [mdx(), sitemap(), react()],
   vite: {
     plugins: [tailwindcss()],

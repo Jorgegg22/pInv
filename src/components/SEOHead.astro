@@ -1,15 +1,15 @@
 ---
 const { title, description, image = '/images/default-og.webp', publishDate, updatedDate, schema, category } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://capitalia.com');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://carteraia.com');
 ---
 
-<title>{title} | CapitalIA</title>
+<title>{title} | CarteraIA</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />
 
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.site || 'https://capitalia.com')} />
+<meta property="og:image" content={new URL(image, Astro.site || 'https://carteraia.com')} />
 <meta property="og:type" content="article" />
 
 <meta name="twitter:card" content="summary_large_image" />
@@ -24,12 +24,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://capitali
   "author": {
     "@type": "Person",
     "name": "Carlos Mendoza",
-    "url": "https://capitalia.com/autor/carlos"
+    "url": "https://carteraia.com/autor/carlos"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "CapitalIA",
-    "logo": { "@type": "ImageObject", "url": "https://capitalia.com/logo.png" }
+    "name": "CarteraIA",
+    "logo": { "@type": "ImageObject", "url": "https://carteraia.com/logo.png" }
   }
 })} />
 

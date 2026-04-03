@@ -10,7 +10,7 @@ export async function GET(context: any) {
   );
 
   return rss({
-    title: 'CapitalIA | Inversiones e IA',
+    title: 'CarteraIA | Inversiones e IA',
     description: 'Guías expertas sobre fondos indexados, ETFs y herramientas de IA para maximizar tu patrimonio.',
     site: context.site,
     items: allPosts.map((post: any) => ({
