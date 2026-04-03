@@ -1,0 +1,67 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import RelatedPosts from '../../components/RelatedPosts.astro';
+import NewsletterCTA from '../../components/NewsletterCTA.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import AdSlot from '../../components/AdSlot.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('ia');
+  return posts.map((post: any) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+---
+
+<Layout 
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.image}
+  publishDate={post.data.publishDate}
+  updatedDate={post.data.updatedDate}
+  schema={post.data.schema}
+  category={post.data.category}
+>
+  <div class="container mx-auto px-6 py-12 max-w-6xl flex gap-12 items-start">
+    <TableOfContents headings={headings} />
+
+    <article class="flex-1 min-w-0 max-w-3xl">
+      <nav class="mb-8 text-sm text-tx-sec" aria-label="Breadcrumb">
+        <ol class="flex items-center gap-2">
+          <li><a href="/" class="hover:text-acc-secondary transition-colors">Inicio</a></li>
+          <li><span class="mx-2">›</span></li>
+          <li><a href="/ia" class="hover:text-acc-secondary transition-colors capitalize">{post.data.category}</a></li>
+          <li><span class="mx-2">›</span></li>
+          <li class="text-tx-main truncate" aria-current="page">{post.data.title}</li>
+        </ol>
+      </nav>
+
+      <header class="mb-10 text-left">
+        <div class="inline-block px-3 py-1 mb-6 rounded-md bg-acc-secondary/10 text-acc-secondary text-sm font-bold uppercase tracking-wider">
+          {post.data.category}
+        </div>
+        <h1 class="text-4xl md:text-5xl mb-6">{post.data.title}</h1>
+        <div class="flex items-center gap-4 text-tx-sec text-sm">
+          <span>Por <span class="font-bold text-tx-main">{post.data.author}</span></span>
+          <span>•</span>
+          <time>{new Date(post.data.publishDate).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          <span>•</span>
+          <span>{post.data.readingTime} min lectura</span>
+        </div>
+      </header>
+
+      <div class="prose dark:prose-invert prose-lg max-w-none prose-headings:font-serif prose-headings:text-tx-main prose-a:text-acc-secondary hover:prose-a:text-acc-secondary/80 prose-img:rounded-xl prose-headings:scroll-mt-28">
+        <Content components={{ NewsletterCTA, AdSlot }} />
+      </div>
+
+      <AdSlot position="bottom" />
+
+      <RelatedPosts currentCategory={post.data.category} currentId={post.id} />
+    </article>
+  </div>
+</Layout>

@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+const posts = (await getCollection('ia'))
+  .sort((a: any, b: any) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<Layout 
+  title="IA Práctica: Herramientas para ganar dinero y automatizar" 
+  description="Descubre cómo usar ChatGPT, Claude y agentes de IA para mejorar tu productividad y tus finanzas personales."
+>
+  <header class="bg-bg-card border-b border-border-ui py-20">
+    <div class="container mx-auto px-6">
+      <span class="text-acc-secondary font-bold tracking-widest uppercase text-sm">Pilar de Contenido</span>
+      <h1 class="text-5xl md:text-6xl mt-4 mb-6">Inteligencia Artificial</h1>
+      <p class="text-xl text-tx-sec max-w-2xl leading-relaxed">
+        No solo hablamos de teoría. Te enseñamos a implementar herramientas de IA generativa para crear flujos de ingresos y automatizar decisiones financieras.
+      </p>
+    </div>
+  </header>
+
+  <section class="container mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map((post: any) => (
+        <ArticleCard post={post} />
+      ))}
+    </div>
+  </section>
+</Layout>

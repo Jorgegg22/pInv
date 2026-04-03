@@ -1,0 +1,21 @@
+---
+interface Props {
+  position: 'sidebar' | 'in-article' | 'bottom';
+}
+
+const { position } = Astro.props;
+---
+
+<div class="w-full my-8 bg-bg-main border border-border-ui rounded-xl flex flex-col items-center justify-center p-4 min-h-[120px]">
+  <span class="text-tx-muted text-xs uppercase tracking-widest mb-2">Publicidad</span>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0000000000000000" crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+       style="display:block; text-align:center;"
+       data-ad-layout="in-article"
+       data-ad-format="fluid"
+       data-ad-client="ca-pub-0000000000000000"
+       data-ad-slot="0000000000"></ins>
+  <script is:inline>
+       (window.adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>

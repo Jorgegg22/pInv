@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleCard from './ArticleCard.astro';
+
+interface Props {
+  currentCategory: 'inversiones' | 'ia';
+  currentId: string;
+}
+
+const { currentCategory, currentId } = Astro.props;
+const allPosts = await getCollection(currentCategory as any);
+const relatedPosts = allPosts
+  .filter((post: any) => post.id !== currentId)
+  .slice(0, 3);
+---
+
+{relatedPosts.length > 0 && (
+  <section class="mt-20 pt-10 border-t border-border-ui">
+    <h2 class="text-3xl mb-8">Artículos relacionados</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {relatedPosts.map((post: any) => (
+        <ArticleCard post={post} />
+      ))}
+    </div>
+  </section>
+)}

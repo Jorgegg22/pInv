@@ -1,0 +1,45 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-border-ui mt-20 py-12 bg-bg-card">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <div class="md:col-span-2">
+        <a href="/" class="text-2xl font-serif font-bold inline-block mb-4">
+          Capital<span class="text-acc-primary">IA</span>
+        </a>
+        <p class="text-tx-sec max-w-sm">
+          Educación financiera de vanguardia e inteligencia artificial práctica para inversores modernos.
+        </p>
+      </div>
+      
+      <div>
+        <h4 class="font-bold mb-4 text-tx-main">Explorar</h4>
+        <ul class="flex flex-col gap-2">
+          <li><a href="/inversiones" class="text-tx-sec hover:text-acc-primary transition-colors">Inversiones</a></li>
+          <li><a href="/ia" class="text-tx-sec hover:text-acc-secondary transition-colors">IA Práctica</a></li>
+          <li><a href="/herramientas" class="text-tx-sec hover:text-tx-main transition-colors">Herramientas</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4 text-tx-main">Legal</h4>
+        <ul class="flex flex-col gap-2">
+          <li><a href="/aviso-legal" class="text-tx-sec hover:text-tx-main transition-colors">Aviso Legal</a></li>
+          <li><a href="/privacidad" class="text-tx-sec hover:text-tx-main transition-colors">Privacidad</a></li>
+          <li><a href="/cookies" class="text-tx-sec hover:text-tx-main transition-colors">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-border-ui text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-tx-muted">
+        &copy; {currentYear} CapitalIA. Todos los derechos reservados.
+      </p>
+      <p class="text-xs text-tx-muted max-w-xl text-center md:text-right">
+        La información contenida en esta web es puramente educativa y no constituye asesoramiento financiero. Las inversiones conllevan riesgo de pérdida del capital.
+      </p>
+    </div>
+  </div>
+</footer>

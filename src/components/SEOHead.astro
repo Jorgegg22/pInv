@@ -1,0 +1,36 @@
+---
+const { title, description, image = '/images/default-og.webp', publishDate, updatedDate, schema, category } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://capitalia.com');
+---
+
+<title>{title} | CapitalIA</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.site || 'https://capitalia.com')} />
+<meta property="og:type" content="article" />
+
+<meta name="twitter:card" content="summary_large_image" />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": updatedDate || publishDate,
+  "author": {
+    "@type": "Person",
+    "name": "Carlos Mendoza",
+    "url": "https://capitalia.com/autor/carlos"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CapitalIA",
+    "logo": { "@type": "ImageObject", "url": "https://capitalia.com/logo.png" }
+  }
+})} />
+
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

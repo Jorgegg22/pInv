@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "DM Sans", sans-serif;
+
+  --color-bg-main: #ffffff;
+  --color-bg-card: #f8fafc;
+  --color-border-ui: #e2e8f0;
+  --color-acc-primary: #059669;
+  --color-acc-secondary: #6366f1;
+  --color-tx-main: #0f172a;
+  --color-tx-sec: #475569;
+}
+
+.dark {
+  --color-bg-main: #0f172a;
+  --color-bg-card: #1e293b;
+  --color-border-ui: #334155;
+  --color-acc-primary: #10b981;
+  --color-acc-secondary: #818cf8;
+  --color-tx-main: #f8fafc;
+  --color-tx-sec: #94a3b8;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-main text-tx-main font-sans transition-colors duration-300;
+  }
+  h1, h2, h3 { @apply font-serif font-bold text-tx-main tracking-tight; }
+}

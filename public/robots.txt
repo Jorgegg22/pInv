@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://capitalia.com/sitemap-index.xml
