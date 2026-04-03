@@ -5,9 +5,23 @@ import sitemap from '@astrojs/sitemap';
 
 import react from '@astrojs/react';
 
+import partytown from '@astrojs/partytown';
+
+// ... tus otros imports
+
 export default defineConfig({
   site: 'https://carteraia.com',
-  integrations: [mdx(), sitemap(), react()],
+  integrations: [
+    mdx(), 
+    sitemap(), 
+    react(), 
+    partytown({
+      // 1. Esto es vital para que Google Analytics funcione
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    })
+  ],
   vite: {
     plugins: [tailwindcss()],
   },
