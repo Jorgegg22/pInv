@@ -4,18 +4,18 @@ import Layout from '../../layouts/Layout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 
 const posts = (await getCollection('inversiones'))
-  .sort((a: any, b: any) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+  .sort((a: any, b: any) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf());
 ---
 
 <Layout 
-  title="Inversiones Inteligentes: Guías y Estrategias 2026" 
-  description="Aprende a invertir en ETFs, fondos indexados y bolsa con estrategias probadas y análisis de IA."
+  title="Inversiones Inteligentes: Guías y Estrategias 2026 | CarteraIA" 
+  description="Aprende a invertir en ETFs, fondos indexados y bolsa con estrategias probadas y análisis potenciados por IA. Guía completa para el inversor español."
 >
-  <header class="bg-bg-card border-b border-border-ui py-20">
+  <header class="bg-bg-secondary border-b border-border py-20">
     <div class="container mx-auto px-6">
-      <span class="text-acc-primary font-bold tracking-widest uppercase text-sm">Pilar de Contenido</span>
+      <span class="text-accent-inv font-bold tracking-widest uppercase text-sm">Pilar de Contenido</span>
       <h1 class="text-5xl md:text-6xl mt-4 mb-6">Inversiones</h1>
-      <p class="text-xl text-tx-sec max-w-2xl leading-relaxed">
+      <p class="text-xl text-text-secondary max-w-2xl leading-relaxed">
         Desde fondos indexados hasta criptoactivos. Guías técnicas diseñadas para el inversor moderno que busca maximizar su rentabilidad con el mínimo riesgo.
       </p>
     </div>
