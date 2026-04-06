@@ -1,32 +1,39 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import ArticleCard from '../components/ArticleCard.astro';
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
 
-const inversionesPosts = await getCollection('inversiones');
-const iaPosts = await getCollection('ia');
+const inversionesPosts = await getCollection("inversiones");
+const iaPosts = await getCollection("ia");
 
 const allPosts = [...inversionesPosts, ...iaPosts].sort(
-  (a: any, b: any) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf()
+  (a: any, b: any) =>
+    new Date(b.data.publishDate).valueOf() -
+    new Date(a.data.publishDate).valueOf(),
 );
 
 const featuredPost = allPosts[0];
 const recentPosts = allPosts.slice(1, 4);
 ---
 
-<Layout 
-  title="CarteraIA | Finanzas Personales e Inteligencia Artificial" 
+<Layout
+  title="CarteraIA | Finanzas Personales e Inteligencia Artificial"
   description="Multiplica tu patrimonio combinando estrategias probadas de inversión (ETFs, fondos indexados) con el poder de la Inteligencia Artificial práctica y automatización."
 >
   <section class="relative pt-24 pb-20 overflow-hidden border-b border-border">
     <div class="container mx-auto px-6 relative z-10">
       <div class="max-w-4xl mx-auto text-center">
         <h1 class="text-5xl md:text-7xl mb-8 leading-[1.1] font-serif">
-          Finanzas de alto rendimiento potenciadas por <span class="text-accent-inv">IA</span>.
+          Finanzas de alto rendimiento potenciadas por <span
+            class="text-accent-inv">IA</span
+          >.
         </h1>
-        
-        <p class="text-xl md:text-2xl text-text-secondary mb-10 max-w-3xl mx-auto">
-          Estrategias de inversión en fondos indexados, ETFs y automatización con ChatGPT. Domina tu dinero y tu tiempo en 2026.
+
+        <p
+          class="text-xl md:text-2xl text-text-secondary mb-10 max-w-3xl mx-auto"
+        >
+          Estrategias de inversión en fondos indexados, ETFs y automatización
+          con ChatGPT. Domina tu dinero y tu tiempo en 2026.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -39,7 +46,10 @@ const recentPosts = allPosts.slice(1, 4);
         </div>
       </div>
     </div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-[800px] h-[800px] bg-accent-inv/5 rounded-full blur-[120px]"></div>
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-[800px] h-[800px] bg-accent-inv/5 rounded-full blur-[120px]"
+    >
+    </div>
   </section>
 
   <section class="container mx-auto px-6 py-12 border-b border-border">
@@ -60,63 +70,129 @@ const recentPosts = allPosts.slice(1, 4);
   </section>
 
   <section class="container mx-auto px-6 py-20">
-    <h2 class="text-3xl mb-10 font-serif border-l-4 border-accent-inv pl-4">Últimos Artículos</h2>
-    
+    <h2 class="text-3xl mb-10 font-serif border-l-4 border-accent-inv pl-4">
+      Últimos Artículos
+    </h2>
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      {featuredPost && (
-        <div class="lg:col-span-2">
-          <article class="card flex flex-col h-full gap-4 hover:border-accent-inv transition-colors group">
-            <a href={`/${featuredPost.data.category}/${featuredPost.id}`} class="block overflow-hidden rounded-xl aspect-video">
-              <img 
-                src={featuredPost.data.image} 
-                alt={featuredPost.data.title} 
-                width="960"
-                height="540"
-                fetchpriority="high"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
-              />
-            </a>
-            <div class="flex flex-col gap-3 mt-2">
-              <div class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider">
-                <span class={featuredPost.data.category === 'inversiones' ? 'badge-inv' : 'badge-ia'}>
-                  {featuredPost.data.category}
-                </span>
-                <span class="text-text-muted">{featuredPost.data.readingTime} min lect</span>
-              </div>
-              <a href={`/${featuredPost.data.category}/${featuredPost.id}`}>
-                <h3 class="text-3xl font-serif group-hover:text-accent-inv transition-colors">{featuredPost.data.title}</h3>
+      {
+        featuredPost && (
+          <div class="lg:col-span-2">
+            <article class="card flex flex-col h-full gap-4 hover:border-accent-inv transition-colors group">
+              <a
+                href={`/${featuredPost.data.category}/${featuredPost.id}`}
+                class="block overflow-hidden rounded-xl aspect-video"
+              >
+                <img
+                  src={featuredPost.data.image}
+                  alt={featuredPost.data.title}
+                  width="960"
+                  height="540"
+                  fetchpriority="high"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
               </a>
-              <p class="text-lg text-text-secondary line-clamp-2">{featuredPost.data.description}</p>
-            </div>
-          </article>
-        </div>
-      )}
+              <div class="flex flex-col gap-3 mt-2">
+                <div class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider">
+                  <span
+                    class={
+                      featuredPost.data.category === "inversiones"
+                        ? "badge-inv"
+                        : "badge-ia"
+                    }
+                  >
+                    {featuredPost.data.category}
+                  </span>
+                  <span class="text-text-muted">
+                    {featuredPost.data.readingTime} min lect
+                  </span>
+                </div>
+                <a href={`/${featuredPost.data.category}/${featuredPost.id}`}>
+                  <h3 class="text-3xl font-serif group-hover:text-accent-inv transition-colors">
+                    {featuredPost.data.title}
+                  </h3>
+                </a>
+                <p class="text-lg text-text-secondary line-clamp-2">
+                  {featuredPost.data.description}
+                </p>
+              </div>
+            </article>
+          </div>
+        )
+      }
 
       <div class="flex flex-col gap-8">
-        {recentPosts.map((post: any) => (
-          <ArticleCard post={post} />
-        ))}
+        {recentPosts.map((post: any) => <ArticleCard post={post} />)}
       </div>
     </div>
   </section>
 
   <section class="bg-bg-secondary border-t border-border py-20">
     <div class="container mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-        <a href="/inversiones" class="card hover:border-accent-inv transition-all group relative overflow-hidden block">
-          <div class="absolute inset-0 bg-gradient-to-br from-accent-inv/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <h2 class="text-4xl font-serif mb-4 group-hover:text-accent-inv transition-colors">Inversiones</h2>
-          <p class="text-text-secondary text-lg mb-6">Guías completas sobre fondos indexados, ETFs, brókers regulados y la filosofía FIRE para alcanzar la independencia financiera.</p>
-          <span class="inline-flex items-center gap-2 text-accent-inv font-bold">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
+        <a
+          href="/inversiones"
+          class="card hover:border-accent-inv transition-all group relative overflow-hidden block"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-accent-inv/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+          >
+          </div>
+          <h2
+            class="text-4xl font-serif mb-4 group-hover:text-accent-inv transition-colors"
+          >
+            Inversiones
+          </h2>
+          <p class="text-text-secondary text-lg mb-6">
+            Guías completas sobre fondos indexados, ETFs, brókers regulados y la
+            filosofía FIRE para alcanzar la independencia financiera.
+          </p>
+          <span
+            class="inline-flex items-center gap-2 text-accent-inv font-bold"
+          >
             Explorar pilar <span class="text-xl">→</span>
           </span>
         </a>
 
-        <a href="/ia" class="card hover:border-accent-ia transition-all group relative overflow-hidden block">
-          <div class="absolute inset-0 bg-gradient-to-br from-accent-ia/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <h2 class="text-4xl font-serif mb-4 group-hover:text-accent-ia transition-colors">IA Práctica</h2>
-          <p class="text-text-secondary text-lg mb-6">Aprende a delegar tareas repetitivas, analizar el mercado y generar ingresos extra creando flujos de trabajo con ChatGPT y Claude.</p>
+        <a
+          href="/ia"
+          class="card hover:border-accent-ia transition-all group relative overflow-hidden block"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-accent-ia/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+          >
+          </div>
+          <h2
+            class="text-4xl font-serif mb-4 group-hover:text-accent-ia transition-colors"
+          >
+            IA Práctica
+          </h2>
+          <p class="text-text-secondary text-lg mb-6">
+            Aprende a delegar tareas repetitivas, analizar el mercado y generar
+            ingresos extra creando flujos de trabajo con ChatGPT y Claude.
+          </p>
           <span class="inline-flex items-center gap-2 text-accent-ia font-bold">
+            Explorar pilar <span class="text-xl">→</span>
+          </span>
+        </a>
+        <a
+          href="/negocio"
+          class="card hover:border-accent-neg transition-all group relative overflow-hidden block"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-accent-ia/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+          >
+          </div>
+          <h2
+            class="text-4xl font-serif mb-4 group-hover:text-accent-ia transition-colors"
+          >
+            Crear Negocio
+          </h2>
+          <p class="text-text-secondary text-lg mb-6">
+            Aprende a sistematizar procesos clave, analizar a tu competencia y
+            aumentar tu rentabilidad creando modelos de negocio escalables.
+          </p>
+          <span class="inline-flex items-center gap-2 text-accent-neg font-bold">
             Explorar pilar <span class="text-xl">→</span>
           </span>
         </a>
@@ -125,14 +201,21 @@ const recentPosts = allPosts.slice(1, 4);
   </section>
 
   <section class="container mx-auto px-6 py-24">
-    <div class="max-w-3xl mx-auto text-center card p-12 relative overflow-hidden">
+    <div
+      class="max-w-3xl mx-auto text-center card p-12 relative overflow-hidden"
+    >
       <div class="relative z-10">
         <h2 class="text-4xl font-serif mb-4">La Newsletter de CarteraIA</h2>
-        <p class="text-xl text-text-secondary mb-8">Estrategias de inversión y automatización enviadas directamente a tu bandeja de entrada. Sin ruido, solo valor accionable.</p>
-        <form class="flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto">
-          <input 
-            type="email" 
-            placeholder="Tu correo electrónico" 
+        <p class="text-xl text-text-secondary mb-8">
+          Estrategias de inversión y automatización enviadas directamente a tu
+          bandeja de entrada. Sin ruido, solo valor accionable.
+        </p>
+        <form
+          class="flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto"
+        >
+          <input
+            type="email"
+            placeholder="Tu correo electrónico"
             required
             class="flex-1 px-5 py-4 rounded-xl bg-bg-primary border border-border focus:border-accent-inv outline-none transition-colors text-lg"
           />
