@@ -19,26 +19,33 @@ const data = post.data;
 const url = `/${data.category}/${post.id}`;
 
 const categoryColor = data.category === 'inversiones' 
-  ? 'bg-acc-primary/10 text-acc-primary' 
-  : 'bg-acc-secondary/10 text-acc-secondary';
+  ? 'badge-inv' 
+  : 'badge-ia';
 ---
 
-<article class="flex flex-col gap-4 p-4 rounded-2xl border border-border-ui bg-bg-card hover:border-acc-primary transition-colors group">
+<article class="card hover:border-accent-inv transition-colors group flex flex-col gap-4">
   <a href={url} class="block overflow-hidden rounded-xl aspect-[16/9]">
-    <img src={data.image} alt={data.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+    <img 
+      src={data.image} 
+      alt={data.title} 
+      loading="lazy" 
+      width="640"
+      height="360"
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+    />
   </a>
   <div class="flex flex-col gap-2">
     <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-wider">
-      <span class={`px-2 py-1 rounded-md ${categoryColor}`}>
+      <span class={categoryColor}>
         {data.category}
       </span>
-      <span class="text-tx-muted">{data.readingTime} min lect</span>
+      <span class="text-text-muted">{data.readingTime} min lect</span>
     </div>
     <a href={url}>
-      <h3 class="text-xl group-hover:text-acc-primary transition-colors">{data.title}</h3>
+      <h3 class="text-xl group-hover:text-accent-inv transition-colors">{data.title}</h3>
     </a>
-    <p class="text-sm line-clamp-2">{data.description}</p>
-    <time class="text-xs text-tx-muted">
+    <p class="text-sm text-text-secondary line-clamp-2">{data.description}</p>
+    <time class="text-xs text-text-muted">
       {new Date(data.publishDate).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
     </time>
   </div>

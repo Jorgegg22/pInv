@@ -6,31 +6,71 @@
 @theme {
   --font-serif: "Playfair Display", serif;
   --font-sans: "DM Sans", sans-serif;
+  --font-mono: "Fira Code", monospace;
 
-  --color-bg-main: #ffffff;
-  --color-bg-card: #f8fafc;
-  --color-border-ui: #e2e8f0;
-  --color-acc-primary: #059669;
-  --color-acc-secondary: #6366f1;
-  --color-tx-main: #0f172a;
-  --color-tx-sec: #475569;
-  --color-tx-muted: #94a3b8;
+  --color-bg-primary: #0D1117;
+  --color-bg-secondary: #111820;
+  --color-bg-tertiary: #0A0E13;
+  --color-border: #1E2530;
+  --color-accent-inv: #1D9E75;
+  --color-accent-ia: #7F77DD;
+  --color-accent-hover: #15806A;
+  --color-text-primary: #F0F2F5;
+  --color-text-secondary: #8892A0;
+  --color-text-muted: #5D6B7A;
 }
 
-.dark {
-  --color-bg-main: #0f172a;
-  --color-bg-card: #1e293b;
-  --color-border-ui: #334155;
-  --color-acc-primary: #10b981;
-  --color-acc-secondary: #818cf8;
-  --color-tx-main: #f8fafc;
-  --color-tx-sec: #94a3b8;
-  --color-tx-muted: #64748b;
+:root {
+  color-scheme: dark;
 }
 
 @layer base {
   body {
-    @apply bg-bg-main text-tx-main font-sans transition-colors duration-300;
+    @apply bg-bg-primary text-text-primary font-sans;
   }
-  h1, h2, h3 { @apply font-serif font-bold text-tx-main tracking-tight; }
+  h1, h2, h3 {
+    @apply font-serif text-text-primary tracking-tight;
+  }
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-accent-inv text-white font-bold px-6 py-3 rounded-lg;
+    @apply hover:bg-accent-hover transition-colors active:scale-95;
+  }
+  .btn-secondary {
+    @apply bg-bg-secondary border border-border text-text-primary font-bold px-6 py-3 rounded-lg;
+    @apply hover:border-accent-inv transition-colors;
+  }
+  .card {
+    @apply bg-bg-secondary border border-border rounded-2xl p-6;
+  }
+  .badge-inv {
+    @apply bg-accent-inv/10 text-accent-inv px-3 py-1 rounded-md text-sm font-bold;
+  }
+  .badge-ia {
+    @apply bg-accent-ia/10 text-accent-ia px-3 py-1 rounded-md text-sm font-bold;
+  }
+}
+
+.prose {
+  --tw-prose-body: #F0F2F5;
+  --tw-prose-headings: #F0F2F5;
+  --tw-prose-lead: #8892A0;
+  --tw-prose-links: #1D9E75;
+  --tw-prose-bold: #F0F2F5;
+  --tw-prose-counters: #8892A0;
+  --tw-prose-bullets: #1D9E75;
+  --tw-prose-hr: #1E2530;
+  --tw-prose-quotes: #F0F2F5;
+  --tw-prose-quote-borders: #1D9E75;
+  --tw-prose-captions: #8892A0;
+  --tw-prose-code: #F0F2F5;
+  --tw-prose-pre-code: #F0F2F5;
+  --tw-prose-pre-bg: #111820;
+  --tw-prose-th-borders: #1E2530;
+  --tw-prose-td-borders: #1E2530;
 }

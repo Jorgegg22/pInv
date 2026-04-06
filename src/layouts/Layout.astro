@@ -1,8 +1,6 @@
 ---
 import SEOHead from "../components/SEOHead.astro";
-import ThemeToggle from "../components/ThemeToggle.astro";
 import Footer from "../components/Footer.astro";
-
 import "../styles/global.css";
 
 const {
@@ -17,25 +15,9 @@ const {
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="dark">
   <head>
     <meta charset="UTF-8" />
-
-    <script is:inline>
-      const theme = localStorage.getItem("theme");
-      if (
-        theme === "dark" ||
-        (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    </script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:wght@700&display=swap"
-      rel="stylesheet"
-    />
     <SEOHead
       title={title}
       description={description}
@@ -49,27 +31,27 @@ const {
   <body>
     <div
       id="reading-progress"
-      class="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-acc-primary to-acc-secondary z-[60] w-0 transition-all duration-150"
+      class="fixed top-0 left-0 h-1 bg-gradient-to-r from-accent-inv to-accent-ia z-[60] w-0 transition-all duration-150"
     >
     </div>
 
     <header
-      class="sticky top-0 z-50 border-b border-border-ui bg-bg-main/80 backdrop-blur-md"
+      class="sticky top-0 z-50 border-b border-border bg-bg-primary/80 backdrop-blur-md"
     >
       <nav
         class="container mx-auto px-6 h-20 flex items-center justify-between"
       >
         <a href="/" class="text-2xl font-serif font-bold">
-          Cartera<span class="text-acc-primary">IA</span>
+          Cartera<span class="text-accent-inv">IA</span>
         </a>
 
         <div class="flex items-center gap-4 md:gap-6">
           <div class="hidden md:flex gap-8 text-sm font-medium">
             <a
               href="/inversiones"
-              class="hover:text-acc-primary transition-colors">Inversiones</a
+              class="hover:text-accent-inv transition-colors">Inversiones</a
             >
-            <a href="/ia" class="hover:text-acc-secondary transition-colors"
+            <a href="/ia" class="hover:text-accent-ia transition-colors"
               >IA Práctica</a
             >
             <a href="/negocio" class="hover:text-purple-600 transition-colors"
@@ -79,15 +61,15 @@ const {
               >Herramientas</a
             >
           </div>
-          <ThemeToggle />
-          <button
-            class="hidden md:block bg-acc-primary text-white px-5 py-2 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity"
+          <a
+            href="#newsletter"
+            class="hidden md:block bg-accent-inv text-white px-5 py-2 rounded-lg font-bold text-sm hover:bg-accent-hover transition-colors"
           >
-            Newsletter
-          </button>
+            Newsletter →
+          </a>
           <button
             id="mobile-menu-btn"
-            class="md:hidden p-2 text-tx-main focus:outline-none"
+            class="md:hidden p-2 text-text-secondary focus:outline-none"
             aria-label="Abrir menú"
           >
             <svg
@@ -108,17 +90,17 @@ const {
 
       <div
         id="mobile-menu"
-        class="hidden md:hidden bg-bg-card border-b border-border-ui px-6 py-6 absolute w-full left-0 top-20 shadow-xl"
+        class="hidden md:hidden bg-bg-secondary border-b border-border px-6 py-6 absolute w-full left-0 top-20 shadow-xl"
       >
         <nav class="flex flex-col gap-6">
           <a
             href="/inversiones"
-            class="text-lg font-bold hover:text-acc-primary transition-colors"
+            class="text-lg font-bold hover:text-accent-inv transition-colors"
             >Inversiones</a
           >
           <a
             href="/ia"
-            class="text-lg font-bold hover:text-acc-secondary transition-colors"
+            class="text-lg font-bold hover:text-accent-ia transition-colors"
             >IA Práctica</a
           >
           <a
@@ -128,14 +110,15 @@ const {
           >
           <a
             href="/herramientas"
-            class="text-lg font-bold hover:text-tx-main transition-colors"
+            class="text-lg font-bold hover:text-text-secondary transition-colors"
             >Herramientas</a
           >
-          <button
-            class="bg-acc-primary text-white px-5 py-3 rounded-xl font-bold text-center mt-2 w-full active:scale-95 transition-transform"
+          <a
+            href="#newsletter"
+            class="bg-accent-inv text-white px-5 py-3 rounded-xl font-bold text-center mt-2 w-full active:scale-95 transition-transform"
           >
             Suscribirse a la Newsletter
-          </button>
+          </a>
         </nav>
       </div>
     </header>

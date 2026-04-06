@@ -7,18 +7,20 @@ const { headings } = Astro.props;
 const filteredHeadings = headings.filter(heading => heading.depth === 2 || heading.depth === 3);
 ---
 
-<nav class="sticky top-28 hidden lg:block w-64 shrink-0 h-max">
-  <h3 class="text-sm font-bold uppercase tracking-wider text-tx-sec mb-4">En este artículo</h3>
-  <ul class="flex flex-col gap-3 border-l-2 border-border-ui pl-4">
-    {filteredHeadings.map(heading => (
-      <li>
-        <a 
-          href={`#${heading.slug}`} 
-          class={`block text-sm text-tx-sec hover:text-acc-primary transition-colors ${heading.depth === 3 ? 'ml-4' : ''}`}
-        >
-          {heading.text}
-        </a>
-      </li>
-    ))}
-  </ul>
-</nav>
+{filteredHeadings.length > 0 && (
+  <nav class="sticky top-28 hidden lg:block w-64 shrink-0 h-max">
+    <h3 class="text-sm font-bold uppercase tracking-wider text-text-secondary mb-4">En este artículo</h3>
+    <ul class="flex flex-col gap-3 border-l-2 border-border pl-4">
+      {filteredHeadings.map(heading => (
+        <li>
+          <a 
+            href={`#${heading.slug}`} 
+            class={`block text-sm text-text-secondary hover:text-accent-inv transition-colors ${heading.depth === 3 ? 'ml-4' : ''}`}
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
