@@ -6,7 +6,7 @@ const baseSchema = z.object({
   description: z.string(),
   publishDate: z.coerce.date(),
   updatedDate: z.coerce.date().optional(),
-  category: z.enum(['inversiones', 'ia']),
+  category: z.enum(['inversiones', 'ia','negocio']),
   tags: z.array(z.string()).optional(),
   image: z.string(),
   readingTime: z.number(),
@@ -24,5 +24,9 @@ const ia = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/ia" }),
   schema: baseSchema
 });
+const negocio = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/negoc" }),
+  schema: baseSchema
+});
 
-export const collections = { inversiones, ia };
+export const collections = { inversiones, ia ,negocio};
