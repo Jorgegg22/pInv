@@ -11,6 +11,7 @@ import partytown from '@astrojs/partytown';
 
 export default defineConfig({
   site: 'https://carteraia.com',
+  trailingSlash: 'never',
   integrations: [
     mdx(), 
     sitemap(), 
