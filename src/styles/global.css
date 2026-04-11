@@ -15,6 +15,7 @@
   --color-accent-inv: #1D9E75;
   --color-accent-ia: #7F77DD;
   --color-accent-neg: #8f10fa;
+  --color-accent-brok: #1E3A8A;
   --color-accent-hover: #15806A;
   --color-text-primary: #F0F2F5;
   --color-text-secondary: #8892A0;
@@ -54,6 +55,9 @@
   }
   .badge-ia {
     @apply bg-accent-ia/10 text-accent-ia px-3 py-1 rounded-md text-sm font-bold;
+  }
+  .badge-brok {
+    @apply bg-accent-brok/10 text-accent-brok px-3 py-1 rounded-md text-sm font-bold;
   }
 }
 

@@ -6,7 +6,7 @@ const blogSchema = ({ image }: { image: any }) => z.object({
   description: z.string().max(160),
   publishDate: z.coerce.date(), 
   updatedDate: z.coerce.date().optional(),
-  category: z.enum(['inversiones', 'ia', 'negocio']),
+  category: z.enum(['inversiones', 'ia', 'negocio', 'brokers']),
   tags: z.array(z.string()),
   image: image(),
   readingTime: z.number(),
@@ -29,6 +29,10 @@ export const collections = {
   }),
   ia: defineCollection({
     loader: glob({ pattern: "*.mdx", base: "./src/content/ia" }),
+    schema: blogSchema,
+  }),
+  brokers: defineCollection({
+    loader: glob({ pattern: "*.mdx", base: "./src/content/brokers" }),
     schema: blogSchema,
   }),
 };
